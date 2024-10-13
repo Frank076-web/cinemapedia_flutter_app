@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:full_app_cinemapedia/config/config.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,13 +9,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       title: 'Cinemapedia',
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      routerConfig: appRouter,
+      theme: AppTheme().getTheme(),
     );
   }
 }
