@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:full_app_cinemapedia/presentation/providers/providers.dart';
+import 'package:full_app_cinemapedia/presentation/widgets/widgets.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie_screen';
@@ -20,18 +21,23 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
     super.initState();
 
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
+    ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
   }
 
   @override
   Widget build(BuildContext context) {
     final movieInfo = ref.watch(movieInfoProvider)[widget.movieId];
-    final isLoading = ref.watch(movieInfoProvider.notifier).isLoading;
+
+    final isLoadingMovies = ref.watch(movieInfoProvider.notifier).isLoading;
+
 
     return Scaffold(
       body: Center(
-        child: isLoading
+        child: isLoadingMovies
             ? const CircularProgressIndicator()
-            : Text('MovieID: ${movieInfo?.id}'),
+            : MovieView(
+                movie: movieInfo!,
+              ),
       ),
     );
   }

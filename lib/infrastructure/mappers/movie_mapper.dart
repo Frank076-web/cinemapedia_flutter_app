@@ -29,7 +29,7 @@ class MovieMapper {
         backdropPath: movieDetails.backdropPath != ''
             ? '${Paths.imageMovieDBPath}/${movieDetails.backdropPath}'
             : 'https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        genreIds: movieDetails.genres.map((e) => e.toString()).toList(),
+        genreIds: movieDetails.genres.map((e) => e.name).toList(),
         id: movieDetails.id,
         originalLanguage: movieDetails.originalLanguage,
         originalTitle: movieDetails.originalTitle,
