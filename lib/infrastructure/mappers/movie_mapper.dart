@@ -22,4 +22,26 @@ class MovieMapper {
       video: moviedb.video,
       voteAverage: moviedb.voteAverage,
       voteCount: moviedb.voteCount);
+
+  static Movie movieDetailsToEntity(MovieDetails movieDetails) {
+    return Movie(
+        adult: movieDetails.adult,
+        backdropPath: movieDetails.backdropPath != ''
+            ? '${Paths.imageMovieDBPath}/${movieDetails.backdropPath}'
+            : 'https://ih1.redbubble.net/image.4905811447.8675/flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
+        genreIds: movieDetails.genres.map((e) => e.toString()).toList(),
+        id: movieDetails.id,
+        originalLanguage: movieDetails.originalLanguage,
+        originalTitle: movieDetails.originalTitle,
+        overview: movieDetails.overview,
+        popularity: movieDetails.popularity,
+        posterPath: movieDetails.posterPath != ''
+            ? '${Paths.imageMovieDBPath}/${movieDetails.posterPath}'
+            : 'no-poster',
+        releaseDate: movieDetails.releaseDate,
+        title: movieDetails.title,
+        video: movieDetails.video,
+        voteAverage: movieDetails.voteAverage,
+        voteCount: movieDetails.voteCount);
+  }
 }

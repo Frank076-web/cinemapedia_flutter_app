@@ -36,7 +36,7 @@ class TheMoviedbDatasourceImpl extends MoviesDatasource {
 
     return _jsonToMovies(response.data);
   }
-  
+
   @override
   Future<List<Movie>> getTopRated({int page = 1}) async {
     final response =
@@ -44,7 +44,7 @@ class TheMoviedbDatasourceImpl extends MoviesDatasource {
 
     return _jsonToMovies(response.data);
   }
-  
+
   @override
   Future<List<Movie>> getUpcoming({int page = 1}) async {
     final response =
@@ -53,5 +53,16 @@ class TheMoviedbDatasourceImpl extends MoviesDatasource {
     return _jsonToMovies(response.data);
   }
 
-  
+  @override
+  Future<Movie> getMovieById(String id) async {
+    final response = await dio.get('/movie/$id');
+
+    if (response.statusCode != 200) {
+      throw Exception('Movie with id $id not found');
+    }
+
+    final movieDetails = MovieDetails.fromJson(response.data);
+
+    return MovieMapper.movieDetailsToEntity(movieDetails);
+  }
 }
