@@ -1,3 +1,5 @@
+export 'movie_masonry.dart';
+export 'movie_poster_link.dart';
 export 'movie_view.dart';
 export 'movies_horizontal_listview.dart';
 export 'movies_slide.dart';
